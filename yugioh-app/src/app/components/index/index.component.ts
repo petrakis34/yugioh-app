@@ -22,6 +22,7 @@ export class IndexComponent implements OnInit{
         .subscribe(cardsResp => {
             if(cardsResp && cardsResp.length) {
                 cardsResp.forEach(c => this.cards.push(c));
+                console.log(cardsResp[1]);
             } else {
                 console.log("sth went wrong");
             }

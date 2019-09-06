@@ -1,1 +1,36 @@
-<p>index loaded</p>
+<div class="d-flex" id="wrapper">
+
+    <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="sidebar-heading">Yu-Gi-Oh Deck! </div>
+        <div class="list-group list-group-flush">
+            <ng-container *ngFor="let card of cards">
+                <a class="list-group-item list-group-item-action bg-light">{{card.name}}</a>
+            </ng-container>
+        </div>
+    </div>
+
+    <div id="page-content-wrapper">
+        <div class="container-fluid">
+            <h2 class="mt-4 text-center">Cards Available</h2>
+            <div class="row">
+                <ng-container *ngFor="let card of cards">
+                    <div class="col-4 custom-card-container">
+                        <div class="card custom-card mx-auto">
+                            <ng-container *ngFor="let image of card.card_images; let first=first" >
+                                <img *ngIf="first" src="{{image.image_url}}" class="card-img-top" >
+                            </ng-container>                            
+                            <div class="card-body d-flex justify-content-center">
+                                <h5 class="card-title align-self-center">{{card.name}}</h5>
+                            </div>
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item">Type: {{card.type}}</li>
+                                <li class="list-group-item">Race: {{card.race}}</li>
+                            </ul>
+                        </div>
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+
+</div>
