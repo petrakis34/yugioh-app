@@ -7,26 +7,44 @@ import { HttpService } from 'src/app/services/http.service';
     templateUrl: './index.component.html'
 })
 
-export class IndexComponent implements OnInit{
+export class IndexComponent implements OnInit {
     public cards: Card[] = [];
-    public blueEyesArchetype: string = 'Blue-Eyes';
+    public cardNames = [
+        'Burial from a Different Dimension', 
+        'Charge of the Light Brigade', 
+        'Infernoid Antra',
+        'Infernoid Attondel',
+        'Infernoid Decatron', 
+        'Infernoid Devyaty', 
+        'Infernoid Harmadik', 
+        'Infernoid Onuncu', 
+        'Infernoid Patrulea', 
+        'Infernoid Pirmais', 
+        'Infernoid Seitsemas',
+        'Lyla, Lightsworn Sorceress', 
+        'Monster Gate',
+        'One for One',
+        'Raiden, Hand of the Lightsworn', 
+        'Reasoning',
+        'Time-Space Trap Hole', 
+        'Torrential Tribute',
+        'Upstart Goblin',
+        'Void Seer'
+    ];
 
-    constructor(private httpService: HttpService){}
+    constructor(private httpService: HttpService) { }
 
     ngOnInit() {
-        this.getCardsBlueEyesArchetype()
+        this.getCards()
     }
 
-    private getCardsBlueEyesArchetype() {
-        this.httpService.getCardInfoByArchetype(this.blueEyesArchetype)
-        .subscribe(cardsResp => {
-            if(cardsResp && cardsResp.length) {
-                cardsResp.forEach(c => this.cards.push(c));
-                console.log(cardsResp[1]);
-            } else {
-                console.log("sth went wrong");
-            }
-            console.log('resp' + JSON.stringify(this.cards));
+    private getCards() {
+        this.cardNames.forEach(card => {
+            this.httpService.getCard(card)
+            .subscribe(cardResp => {
+                console.log(cardResp);
+            })
         })
+
     }
 }

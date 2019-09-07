@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Card } from '../classes/models/card';
-import { Observable, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { AppEndpoints } from '../app.endpoints';
+import { CardResponse } from '../classes/responses/card.response';
+import { map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -11,7 +13,8 @@ import { AppEndpoints } from '../app.endpoints';
 export class HttpService {
     constructor(private http: HttpClient) { }
 
-    public getCardInfoByArchetype(param: string): Observable<Card[]> {
-        return this.http.get<Card[]>(AppEndpoints.setUrlParameters(AppEndpoints.archetypeFilter, [param]));
+    public getCard(param: string): Observable<Card> {
+        return this.http.get<CardResponse>(AppEndpoints.setUrlParameters(AppEndpoints.cardData, [param]))
+            .pipe(map((cardResponse: CardResponse) => cardResponse.data));
     }
 }
