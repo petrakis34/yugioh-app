@@ -9,17 +9,26 @@
 
     <div id="page-content-wrapper">
         <div class="container-fluid">
-            <h2 *ngIf="!isCardClicked" class="mt-4 text-center">Cards Available</h2>
-            <h2 *ngIf="isCardClicked" class="mt-4 text-center">{{card.name}}</h2>
+            <h2 *ngIf="!isCardClicked" class="mt-5 text-center">Yu-Gi-Oh Card Site</h2>
+            <h2 *ngIf="isCardClicked" class="mt-5 text-center">{{card.name}}</h2>
             <div class="row">
                 <ng-container *ngIf="isCardClicked">
                     <card-details [card]="card"></card-details>
                 </ng-container>
                 <ng-container *ngIf="!isCardClicked">
-                    <h6 class="text-center">Please click a card from the menu at the left to show their details</h6>
+                    <div class="col-12 mt-4">
+                        <h6 class="text-center">Please click a card from the menu at the left to show their details</h6>
+                    </div>
+                    <div class="col-12">
+                        <p class="text-center">YugiohPrices.com is a website dedicated to providing Yu-Gi-Oh players
+                            with:</p>
+                        <p class="text-center">Details about Yu-Gi-Oh cards</p>
+                        <p class="text-center">The description of each Yu-Gi-Oh card</p>
+                        <p class="text-center">Information about the property of the cards</p>
+                        <p class="text-center">Other details described for each card</p>
+                    </div>
                 </ng-container>
             </div>
         </div>
     </div>
-
 </div>
