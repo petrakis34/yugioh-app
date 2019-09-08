@@ -9,6 +9,7 @@ import { HttpService } from 'src/app/services/http.service';
 
 export class IndexComponent implements OnInit {
     public card: Card = new Card();
+    public cardList: Card[] = [];
     public cardName = "Monster%20Gate";
     public isCardClicked = false;
     public cardNames = [
@@ -51,6 +52,7 @@ export class IndexComponent implements OnInit {
             .subscribe(cardResp => {
                 if(cardResp && cardResp.name) {
                     this.card = cardResp;
+                    this.cardList.push(cardResp); //TODO 
                     this.isCardClicked = true;
                 }
             })
