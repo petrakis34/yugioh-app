@@ -1,6 +1,6 @@
 export class AppEndpoints {
 
-    private static ygoPricesApiUrl: string = "https://yugiohprices.com/api/";
+    private static ygoPricesApiUrl: string = "http://localhost:8000/api/";
     public static cardData: string = AppEndpoints.ygoPricesApiUrl + "card_data/param";
     public static cardImage: string = AppEndpoints.ygoPricesApiUrl + "card_image/param";
 

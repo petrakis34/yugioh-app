@@ -8,7 +8,12 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "watch:dev": "ng build --watch=true --poll 1000"
+    "watch:dev": "ng build --watch=true --poll 1000",
+    "build:prod": "ng build --prod && babel src --out-dir dist",
+    "build:dev": "ng build && babel src --out-dir dist",
+    "start:server": "node src/server.js",
+    "debug:server": "node --inspect src/server.js",
+    "serv": "babel src --out-dir dist"
   },
   "private": true,
   "dependencies": {
@@ -21,6 +26,9 @@
     "@angular/platform-browser-dynamic": "~8.2.4",
     "@angular/router": "~8.2.4",
     "bootstrap": "^4.3.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "http-proxy": "^1.17.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
     "zone.js": "~0.9.1"
@@ -30,10 +38,15 @@
     "@angular/cli": "~8.3.2",
     "@angular/compiler-cli": "~8.2.4",
     "@angular/language-service": "~8.2.4",
-    "@types/node": "~8.9.4",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
+    "@types/node": "~8.9.4",
+    "babel-cli": "^6.26.0",
+    "babel-install": "2.1.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-watch": "^2.0.7",
     "codelyzer": "^5.0.0",
+    "http-proxy-middleware": "^0.20.0",
     "jasmine-core": "~3.4.0",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~4.1.0",
@@ -45,5 +58,8 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.5.3"
+  },
+  "engines": {
+    "node": "10.x"
   }
 }

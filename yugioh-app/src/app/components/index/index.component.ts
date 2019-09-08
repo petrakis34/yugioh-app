@@ -9,24 +9,25 @@ import { HttpService } from 'src/app/services/http.service';
 
 export class IndexComponent implements OnInit {
     public cards: Card[] = [];
+    public card = "Monster%20Gate";
     public cardNames = [
-        'Burial from a Different Dimension', 
-        'Charge of the Light Brigade', 
+        'Burial from a Different Dimension',
+        'Charge of the Light Brigade',
         'Infernoid Antra',
         'Infernoid Attondel',
-        'Infernoid Decatron', 
-        'Infernoid Devyaty', 
-        'Infernoid Harmadik', 
-        'Infernoid Onuncu', 
-        'Infernoid Patrulea', 
-        'Infernoid Pirmais', 
+        'Infernoid Decatron',
+        'Infernoid Devyaty',
+        'Infernoid Harmadik',
+        'Infernoid Onuncu',
+        'Infernoid Patrulea',
+        'Infernoid Pirmais',
         'Infernoid Seitsemas',
-        'Lyla, Lightsworn Sorceress', 
+        'Lyla, Lightsworn Sorceress',
         'Monster Gate',
         'One for One',
-        'Raiden, Hand of the Lightsworn', 
+        'Raiden, Hand of the Lightsworn',
         'Reasoning',
-        'Time-Space Trap Hole', 
+        'Time-Space Trap Hole',
         'Torrential Tribute',
         'Upstart Goblin',
         'Void Seer'
@@ -35,16 +36,20 @@ export class IndexComponent implements OnInit {
     constructor(private httpService: HttpService) { }
 
     ngOnInit() {
-        this.getCards()
+        this.getMockCard();
     }
 
-    private getCards() {
-        this.cardNames.forEach(card => {
-            this.httpService.getCard(card)
+    private getCard() {
+        this.httpService.getCard(this.card)
             .subscribe(cardResp => {
                 console.log(cardResp);
             })
-        })
+    }
 
+    private getMockCard() {
+        this.httpService.getMockCard()
+            .subscribe(cardResp => {
+                console.log(cardResp);
+            })
     }
 }
