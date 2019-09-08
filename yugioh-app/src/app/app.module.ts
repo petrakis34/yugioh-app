@@ -6,6 +6,7 @@ import { IndexComponent } from './components/index/index.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CardDetailsComponent } from './components/index/card-details/card-details.component';
 import { CardListComponent } from './components/index/card-list/card-list.component';
+import { NgxUiLoaderModule, NgxUiLoaderHttpModule } from  'ngx-ui-loader';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,9 @@ import { CardListComponent } from './components/index/card-list/card-list.compon
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ScrollingModule
+    ScrollingModule,
+    NgxUiLoaderModule,
+    NgxUiLoaderHttpModule,
   ],
   providers: [],
   bootstrap: [IndexComponent]

@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { Card } from 'src/app/classes/models/card';
 import { HttpService } from 'src/app/services/http.service';
 import { finalize } from 'rxjs/operators';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 
 @Component({
     selector: 'index',
@@ -14,7 +15,7 @@ export class IndexComponent implements OnInit {
     public isCardClicked = false;
     public listLoaded = false;
 
-    constructor(private httpService: HttpService) { }
+    constructor(private httpService: HttpService, private loader: NgxUiLoaderService) { }
 
     ngOnInit() {
         this.getCards();
@@ -22,8 +23,12 @@ export class IndexComponent implements OnInit {
 
     private getCards() {
         if (this.cardList.length > 0) return;
+        this.loader.start();
         this.httpService.getCards().pipe(
-            finalize(() => this.listLoaded = true)
+            finalize(() => {
+                this.loader.stop();
+                this.listLoaded = true;
+            })
         ).subscribe(cardsResponse => {
             cardsResponse.forEach(c => this.cardList.push(c));
         })

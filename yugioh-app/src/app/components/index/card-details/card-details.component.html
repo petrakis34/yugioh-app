@@ -1,7 +1,7 @@
 <div class="col-12">
     <div class="card m-1">
         <div class="row no-gutters">
-            <div class="col-md-4 d-flex justify-content-center align-items-center">
+            <div class="col-md-4 d-flex justify-content-center align-items-center" ngxUiLoaderBlurred [loaderId]="'loader-01'">
                 <img src="{{image_url}}" class="card-img-top">
             </div>
             <div class="col-md-8">
@@ -14,6 +14,7 @@
                     <p class="card-text">{{card.text}}</p>
                 </div>
             </div>
+            <ngx-ui-loader [loaderId]="'loader-01'"></ngx-ui-loader>
         </div>
     </div>
 </div>
