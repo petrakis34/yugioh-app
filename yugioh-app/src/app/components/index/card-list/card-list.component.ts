@@ -1,18 +1,25 @@
-import { Component, Input, Output,EventEmitter } from "@angular/core";
+import { Component, Input, Output,EventEmitter, SimpleChanges, OnChanges, ChangeDetectorRef } from "@angular/core";
+import { Card } from 'src/app/classes/models/card';
 
 @Component({
     selector: 'card-list',
     templateUrl: './card-list.component.html'
 })
 
-export class CardListComponent {
+export class CardListComponent implements OnChanges{
     @Input()
-    cardNames: string[];
+    cardList: Card[];
 
     @Output()
     onCardClicked = new EventEmitter<string>();
 
-    private cardClicked(card: string) {
-        this.onCardClicked.emit(card);
+    ngOnChanges(changes: SimpleChanges){
+        if(changes.cardList && changes.cardList.currentValue) {
+            this.cardList = changes.cardList.currentValue;
+        }
+    }
+
+    private cardClicked(card: Card) {
+        this.onCardClicked.emit(card.name);
     }
 }

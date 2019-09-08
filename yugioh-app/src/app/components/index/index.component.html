@@ -3,7 +3,9 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
         <div class="sidebar-heading">Yu-Gi-Oh Deck! </div>
         <div class="list-group list-group-flush">
-            <card-list [cardNames]="cardNames" (onCardClicked)="selectedCard($event)"></card-list>
+            <ng-container *ngIf="listLoaded">
+                <card-list [cardList]="cardList" (onCardClicked)="selectedCard($event)"></card-list>
+            </ng-container>
         </div>
     </div>
 

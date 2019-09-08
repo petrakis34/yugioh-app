@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Card } from 'src/app/classes/models/card';
 import { HttpService } from 'src/app/services/http.service';
+import { finalize } from 'rxjs/operators';
 
 @Component({
     selector: 'index',
@@ -10,57 +11,29 @@ import { HttpService } from 'src/app/services/http.service';
 export class IndexComponent implements OnInit {
     public card: Card = new Card();
     public cardList: Card[] = [];
-    public cardName = "Monster%20Gate";
     public isCardClicked = false;
-    public cardNames = [
-        'Burial from a Different Dimension',
-        'Charge of the Light Brigade',
-        'Infernoid Antra',
-        'Infernoid Attondel',
-        'Infernoid Decatron',
-        'Infernoid Devyaty',
-        'Infernoid Harmadik',
-        'Infernoid Onuncu',
-        'Infernoid Patrulea',
-        'Infernoid Pirmais',
-        'Infernoid Seitsemas',
-        'Lyla, Lightsworn Sorceress',
-        'Monster Gate',
-        'One for One',
-        'Raiden, Hand of the Lightsworn',
-        'Reasoning',
-        'Time-Space Trap Hole',
-        'Torrential Tribute',
-        'Upstart Goblin',
-        'Void Seer'
-    ];
+    public listLoaded = false;
 
     constructor(private httpService: HttpService) { }
 
     ngOnInit() {
+        this.getCards();
     }
 
-    private getCard() {
-        this.httpService.getCard(this.cardName)
-            .subscribe(cardResp => {
-                console.log(cardResp);
-            })
+    private getCards() {
+        if (this.cardList.length > 0) return;
+        this.httpService.getCards().pipe(
+            finalize(() => this.listLoaded = true)
+        ).subscribe(cardsResponse => {
+            cardsResponse.forEach(c => this.cardList.push(c));
+        })
     }
 
-    private getMockCard() {
-        this.httpService.getMockCard()
-            .subscribe(cardResp => {
-                if(cardResp && cardResp.name) {
-                    this.card = cardResp;
-                    this.cardList.push(cardResp); //TODO 
-                    this.isCardClicked = true;
-                }
-            })
-    }
-
-    public selectedCard(card: string) {
-        if (card) {
-            this.getMockCard();
+    public selectedCard(cardName: string) {
+        if (cardName) {
+            console.log(cardName);
+            this.card = this.cardList.find(c => c.name === cardName);
+            this.isCardClicked = true;
         }
     }
 }
