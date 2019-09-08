@@ -8,8 +8,9 @@ import { HttpService } from 'src/app/services/http.service';
 })
 
 export class IndexComponent implements OnInit {
-    public cards: Card[] = [];
-    public card = "Monster%20Gate";
+    public card: Card = new Card();
+    public cardName = "Monster%20Gate";
+    public isCardClicked = false;
     public cardNames = [
         'Burial from a Different Dimension',
         'Charge of the Light Brigade',
@@ -36,11 +37,10 @@ export class IndexComponent implements OnInit {
     constructor(private httpService: HttpService) { }
 
     ngOnInit() {
-        this.getMockCard();
     }
 
     private getCard() {
-        this.httpService.getCard(this.card)
+        this.httpService.getCard(this.cardName)
             .subscribe(cardResp => {
                 console.log(cardResp);
             })
@@ -49,7 +49,16 @@ export class IndexComponent implements OnInit {
     private getMockCard() {
         this.httpService.getMockCard()
             .subscribe(cardResp => {
-                console.log(cardResp);
+                if(cardResp && cardResp.name) {
+                    this.card = cardResp;
+                    this.isCardClicked = true;
+                }
             })
+    }
+
+    public cardClicked(card: string) {
+        if (card) {
+            this.getMockCard();
+        }
     }
 }
