@@ -5,11 +5,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { IndexComponent } from './components/index/index.component';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { CardDetailsComponent } from './components/index/card-details/card-details.component';
+import { CardListComponent } from './components/index/card-list/card-list.component';
 
 @NgModule({
   declarations: [
     IndexComponent,
-    CardDetailsComponent
+    CardDetailsComponent,
+    CardListComponent
   ],
   imports: [
     BrowserModule,

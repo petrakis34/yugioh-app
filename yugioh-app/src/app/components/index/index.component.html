@@ -3,13 +3,7 @@
     <div class="bg-light border-right" id="sidebar-wrapper">
         <div class="sidebar-heading">Yu-Gi-Oh Deck! </div>
         <div class="list-group list-group-flush">
-            <cdk-virtual-scroll-viewport itemSize="{{cardNames.length}}" class="list-viewport">
-                <ng-container *cdkVirtualFor="let card of cardNames">
-                    <span (click)="cardClicked(card)">
-                        <a class="list-group-item list-group-item-action bg-light">{{card}}</a>
-                    </span>
-                </ng-container>
-            </cdk-virtual-scroll-viewport>
+            <card-list [cardNames]="cardNames" (onCardClicked)="selectedCard($event)"></card-list>
         </div>
     </div>
 

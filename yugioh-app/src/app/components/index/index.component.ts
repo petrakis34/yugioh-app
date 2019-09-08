@@ -58,7 +58,7 @@ export class IndexComponent implements OnInit {
             })
     }
 
-    public cardClicked(card: string) {
+    public selectedCard(card: string) {
         if (card) {
             this.getMockCard();
         }
