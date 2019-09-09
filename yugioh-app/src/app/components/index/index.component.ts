@@ -41,4 +41,8 @@ export class IndexComponent implements OnInit {
             this.isCardClicked = true;
         }
     }
+
+    public goHome() {
+        this.isCardClicked = false;
+    }
 }
