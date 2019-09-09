@@ -1,8 +1,11 @@
-export class AppEndpoints {
+import { environment } from 'src/environments/environment';
 
-    private static ygoPricesApiUrl: string = "http://localhost:8000/api/";
-    public static cardData: string = AppEndpoints.ygoPricesApiUrl + "card_data/param";
-    public static cardImage: string = AppEndpoints.ygoPricesApiUrl + "card_image/param";
+export class AppEndpoints {
+    
+    private _baseUrl = `${environment.protocol}://${environment.hostname}:${environment.port}`;
+    private static apiPrefix: string = "/api/";
+    public static cardData: string = AppEndpoints.apiPrefix + "card_data/param";
+    public static cardImage: string = AppEndpoints.apiPrefix + "card_image/param";
 
     public static setUrlParameters(endpoint: string, params: string[]) {
         params.forEach(p => {

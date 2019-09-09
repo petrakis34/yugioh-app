@@ -14,9 +14,11 @@
             <h2 *ngIf="!isCardClicked" class="mt-5 text-center">Yu-Gi-Oh Card Site</h2>
             <h2 *ngIf="isCardClicked" class="mt-5 text-center">{{card.name}}</h2>
             <div class="row">
+
                 <ng-container *ngIf="isCardClicked">
                     <card-details [card]="card"></card-details>
                 </ng-container>
+                
                 <ng-container *ngIf="!isCardClicked">
                     <div class="col-12 mt-4">
                         <h6 class="text-center">Please click a card from the menu at the left to show their details</h6>
