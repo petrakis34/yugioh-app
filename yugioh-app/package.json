@@ -13,7 +13,8 @@
     "build:dev": "ng build && babel src --out-dir dist",
     "start:server": "node src/server.js",
     "debug:server": "node --inspect src/server.js",
-    "server": "babel src --out-dir dist"
+    "server": "babel src --out-dir dist",
+    "postinstall": "ng build --prod && babel src --out-dir dist"
   },
   "private": true,
   "dependencies": {
