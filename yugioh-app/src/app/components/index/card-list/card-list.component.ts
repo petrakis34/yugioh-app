@@ -19,7 +19,7 @@ export class CardListComponent implements OnChanges{
         }
     }
 
-    private cardClicked(card: Card) {
+    public cardClicked(card: Card) {
         this.onCardClicked.emit(card.name);
     }
 }
